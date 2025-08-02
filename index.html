@@ -305,7 +305,7 @@
                     </div>
                     <div class="form-group">
                         <label for="receivedFrom" class="block text-sm mb-1">Received From:</label>
-                        <input type="text" id="receivedFrom" placeholder="e.g., Name of the Person" class="w-full" required>
+                        <input type="text" id="receivedFrom" placeholder="e.g., ABC Company" class="w-full" required>
                     </div>
                     <div class="form-group">
                         <label for="monthOfService" class="block text-sm mb-1">For the month of:</label>
@@ -313,7 +313,7 @@
                     </div>
                     <div class="form-group">
                         <label for="place" class="block text-sm mb-1">Place:</label>
-                        <input type="text" id="place" placeholder="e.g., Chennai" class="w-full" required>
+                        <input type="text" id="place" placeholder="e.g., New Delhi" class="w-full" required>
                     </div>
                     <div class="form-group">
                         <label for="receiptDate" class="block text-sm mb-1">Date:</label>
@@ -596,7 +596,8 @@
             try {
                 // Use html2canvas to create a canvas element from the receipt preview div
                 // The `useCORS` option is important for handling the revenue stamp image from an external URL
-                const canvas = await html2canvas(receiptPreview, { scale: 2, useCORS: true });
+                // We now use `window.devicePixelRatio` to match the current browser zoom level
+                const canvas = await html2canvas(receiptPreview, { scale: window.devicePixelRatio, useCORS: true });
                 
                 // Get the image data from the canvas
                 const imgData = canvas.toDataURL('image/png');
